@@ -11,7 +11,7 @@ import { PRODUCT_PRICES } from "../../prices";
 import Spinner from "../../components/UI/Spinner";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
-export default function ContactData({ close }) {
+const ContactData = ({ close }) => {
   const dispatch = useDispatch();
   const { dishes, totalPrice, delivery, isLoading } = useSelector((state) => {
     return {
@@ -100,3 +100,5 @@ export default function ContactData({ close }) {
     </>
   );
 }
+
+export default React.memo(ContactData);

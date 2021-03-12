@@ -52,16 +52,19 @@ const ShopCart = () => {
     } else if (purchasing === true && total !== 0) {
       dispatch(removeAtTotal());
     } else return;
-  }, [purchasing]);
+  }, [purchasing, dispatch]);
 
-  if (
-    dishes.Pasta === 0 &&
-    dishes.Caesar === 0 &&
-    dishes.Focaccia === 0 &&
-    dishes.Lemonade === 0
-  ) {
-    dispatch(changePurchasing(true));
-  }
+  useEffect(() => {
+    if (
+      dishes.Pasta === 0 &&
+      dishes.Caesar === 0 &&
+      dishes.Focaccia === 0 &&
+      dishes.Lemonade === 0
+    ) {
+      dispatch(changePurchasing(true));
+    }
+  }, [dispatch, dishes.Pasta, dishes.Caesar, dishes.Focaccia, dishes.Lemonade])
+  
 
   const productObj = function (product, amount) {
     var result = [];
@@ -137,4 +140,4 @@ const ShopCart = () => {
   );
 };
 
-export default ShopCart;
+export default React.memo(ShopCart);
